@@ -12,7 +12,7 @@ namespace CubeDaLeiturav2.Compartilhado
             while (true)
             {
                 Cabecalho();
-                int opmenu = LerInt("Escolha uma opção no menu\n1. Cadastro\n2. Gerenciamento");
+                int opmenu = LerInt("Escolha uma opção no menu\n1. Adicionar ou editar cadastro\n2. Gerenciamento\nSua Opção:");
                 if (opmenu != 1 && opmenu != 2)
                 {
                     Erro();
@@ -39,14 +39,72 @@ namespace CubeDaLeiturav2.Compartilhado
             while (true)
             {
                 Cabecalho();
-                int opmenu = LerInt("O que deseja cadastrar\n1. Amigo\n2. Revista\n3. Caixa");
-                if (opmenu != 1 && opmenu != 2 && opmenu != 3)
+                int opmenu = LerInt("Escolha uma opção\n1. Editar\n2. Cadastrar\nSua Opção: ");
+                if (opmenu != 1 && opmenu != 2)
                 {
                     Erro();
                     continue;
                 }
                 switch (opmenu)
-                { case 1: amigo.Cadastro(); break; case 2: revista.Cadastro(); break; case 3: caixa.Cadastro(); break; }
+                {
+                    case 1:
+                        while (true)
+                        {
+                            int submenu = LerInt("Escolha uma opção:\n1. Amigo\n2. Revista\n3. Caixa\nSua Opção: ");
+                            if (opmenu != 1 && opmenu != 2 && opmenu != 3)
+                            {
+                                Erro();
+                                continue;
+                            }
+                            switch (submenu)
+                            {
+                                case 1:
+                                    amigo.Editar();
+                                    break;
+                                case 2:
+                                    revista.Editar();
+                                    break;
+                                case 3:
+                                    caixa.Editar();
+                                    break;
+                            }
+                            break;
+                        }
+                        break;
+
+                    case 2:
+                        {
+                            while (true)
+                            {
+                                int submenu = LerInt("Escolha uma opção:\n1. Amigo\n2. Revista\n3. Caixa\nSua Opção: ");
+                                if (opmenu != 1 && opmenu != 2 && opmenu != 3)
+                                {
+                                    Erro();
+                                    continue;
+                                }
+                                switch (submenu)
+                                {
+                                    case 1:
+                                        amigo.Cadastro();
+                                        break;
+                                    case 2:
+                                        revista.Cadastro();
+                                        break;
+                                    case 3:
+                                        caixa.Cadastro();
+                                        break;
+                                }
+                                break;
+                            }
+                            break;
+                        }
+                }
+
+                if (opmenu != 1 && opmenu != 2)
+                {
+                    Erro();
+                    continue;
+                }
             }
         }
 
@@ -59,14 +117,24 @@ namespace CubeDaLeiturav2.Compartilhado
             while (true)
             {
                 Cabecalho();
-                int opmenu = LerInt("Escolha uma opção\n1. Emprestimo\n2. Reservas\n3. Multa");
+                int opmenu = LerInt("Escolha uma opção\n1. Emprestimo\n2. Reservas\n3. Multa\nSua Opção: ");
                 if (opmenu != 1 && opmenu != 2 && opmenu != 3)
                 {
                     Erro();
                     continue;
                 }
                 switch (opmenu)
-                { case 1: emprestimo.Cadastro(); break; case 2: revista.Reservas(); break; case 3: amigo.Multa(); break; }
+                {
+                    case 1:
+                        emprestimo.Cadastro();
+                        break;
+                    case 2:
+                        revista.Reservas();
+                        break;
+                    case 3:
+                        amigo.Multa();
+                        break;
+                }
             }
         }
 
@@ -134,5 +202,4 @@ namespace CubeDaLeiturav2.Compartilhado
             Console.ResetColor();
         }
     }
-
 }

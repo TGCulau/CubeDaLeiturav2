@@ -11,7 +11,7 @@ namespace CubeDaLeiturav2.ModuloCaixa
         RepositorioCaixa RCaixa = new RepositorioCaixa();
         RepositorioRevista RRevista = new RepositorioRevista();
         #endregion
-        public void CadastroCaixa()
+        public void Cadastro()
         {
             ChecagemRevista();
 
@@ -81,6 +81,9 @@ namespace CubeDaLeiturav2.ModuloCaixa
                 telaRevista.Cadastro();
             }
         }
+        public void Editar()
+        {
 
+        }
     }
 }

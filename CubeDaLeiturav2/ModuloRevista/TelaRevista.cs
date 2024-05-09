@@ -24,6 +24,11 @@ namespace CubeDaLeiturav2.ModuloRevista
 
             tela.CadastroComSucesso();
         }
+        public void Editar()
+        {
+
+        }
+
         public void Reservas()
         {
 
