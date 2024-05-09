@@ -83,7 +83,27 @@ namespace CubeDaLeiturav2.ModuloCaixa
         }
         public void Editar()
         {
+            List<Caixa> caixas = RCaixa.Leitura();
+            tela.Cabecalho();
+            Console.Write("\n\tSelecionar caixa");
 
+            for (int i = 0; i < caixas.Count; i++)
+            {
+                Console.Write($"\nID {i} | Etiqueta: {caixas[i].Etiqueta} | Cor: {caixas[i].Cor}");
+            }
+            int opCaixa = tela.LerInt("\nDigite a ID da caixa que voce deseja editar: ");
+
+            tela.Cabecalho();
+            Console.Write("\n\tEditar caixa");
+            Console.Write($"\nAtualmente a etiqueta está cadastrada como {caixas[opCaixa].Etiqueta}. Digite a nova etiqueta: ");
+            caixas[opCaixa].Etiqueta = Console.ReadLine();
+            Console.Write($"\nAtualmente a cor está cadastrada como {caixas[opCaixa].Cor}. Digite a nova cor: ");
+            caixas[opCaixa].Cor = Console.ReadLine();
+            caixas[opCaixa].DiasEmprestimo = tela.LerInt($"\nAtualmente os dias de empréstimo estão cadastrados como {caixas[opCaixa].DiasEmprestimo}. Digite os novos dias de empréstimo: ");
+
+            tela.CadastroComSucesso();
+
+            RCaixa.SalvarLista(caixas);
         }
     }
 }
