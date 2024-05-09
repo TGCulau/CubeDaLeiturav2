@@ -2,21 +2,19 @@
 {
     public class RepositorioCaixa
     {
-        public Caixa[][] caixas { get; set; } = new Caixa[13][];
+        public List<Caixa> caixas { get; set; } = new List<Caixa>();
 
-        public Caixa[][] Leitura()
+        public List<Caixa> Leitura()
         {
             return caixas;
         }
-        public void Salvar(Caixa[] caixa)
+        public void Salvar(Caixa caixa)
         {
-            for (int i = 0; i < caixas.Length; i++)
-            {
-                if (caixas[i] == null)
-                {
-                    caixas[i] = caixa;
-                }
-            }
+            caixas.Add(caixa);
+        }
+        public void SalvarLista(List<Caixa> caixas)
+        {
+            this.caixas = caixas;
         }
     }
 }

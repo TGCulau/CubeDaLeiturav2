@@ -24,14 +24,16 @@ namespace CubeDaLeiturav2.ModuloCaixa
             Console.Write("\nCor: ");
             string cor = Console.ReadLine();
             int diasEmprestimo = tela.LerInt("\nQuantos dias de emprestimo essa caixa terá: ");
-            Caixa[] caixa = new Caixa[1];
-            caixa[0] = new Caixa(etiqueta, cor, diasEmprestimo, null);
+
+            Caixa caixa = new Caixa(etiqueta, cor, diasEmprestimo);
+
+            RCaixa.Salvar(caixa);
 
             tela.CadastroComSucesso();
 
-            CadastroRevista();
+            CadastroDeRevista();
         }
-        public void CadastroRevista()
+        public void CadastroDeRevista()
         {
             ChecagemRevista();
 
@@ -46,23 +48,20 @@ namespace CubeDaLeiturav2.ModuloCaixa
 
             int id = tela.LerInt("\nDigite o ID da revista desejada: ");
 
-            Caixa[][] caixa = RCaixa.Leitura();
-
-            int idCaixa = tela.LerInt("\nDigite o ID da caixa desejada: ");
-
-            for (int i = 0; i < caixa.Length; i++)
+            List<Caixa> caixas = RCaixa.Leitura();
+            int idCaixa = -1;
+            foreach (Caixa caixa in caixas)
             {
-                if (caixa[i] != null)
-                {
-                    for (int j = 0; j < caixa[i].Length; j++)
-                    {
-                        Console.Write($"\nID {i} | Cor {caixa[i][j].Cor} | Etiqueta {caixa[i][j].Etiqueta}");
-                    }
-                }
+                idCaixa++;
+                Console.WriteLine($"ID {idCaixa} | Etiqueta: {caixa.Etiqueta} | Cor: {caixa.Cor} | Dias de Empréstimo: {caixa.DiasEmprestimo}");
             }
 
+            idCaixa = tela.LerInt("\nDigite o ID da caixa desejada: ");
 
-            RCaixa.Salvar(caixa[0]);
+            caixas[idCaixa].Revistas.Add(revista[id]);
+            tela.CadastroComSucesso();
+
+            RCaixa.SalvarLista(caixas);
         }
         public void ChecagemRevista()
         {
@@ -82,5 +81,6 @@ namespace CubeDaLeiturav2.ModuloCaixa
                 telaRevista.Cadastro();
             }
         }
+
     }
 }

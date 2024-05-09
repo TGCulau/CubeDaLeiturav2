@@ -21,6 +21,7 @@ namespace CubeDaLeiturav2.ModuloEmprestimo
             ChecagemAmigo();
 
             Caixa[] caixa = RCaixa.Leitura();
+
             Amigo[] amigo = RAmigo.Leitura();
 
             tela.Cabecalho();
@@ -36,21 +37,27 @@ namespace CubeDaLeiturav2.ModuloEmprestimo
 
             int idAmigo = tela.LerInt("\nDigite o ID do amigo correspondente para o imprestimo: ");
 
-            Console.Write("\n\tLista de Caixas cadastradas");
-
-            for (int i = 0; i < caixa.Length; i++)
+            int idCaixa = -1;
+            foreach (Caixa caixa in caixas)
             {
-                Console.Write($"\nID {i} | Cor {caixa[i].Cor} | Etiqueta {caixa[i].Etiqueta}");
+                idCaixa++;
+                Console.WriteLine($"ID {idCaixa} | Etiqueta: {caixa.Etiqueta} | Cor: {caixa.Cor} | Dias de Empréstimo: {caixa.DiasEmprestimo}");
             }
+            idCaixa = tela.LerInt("\nDigite o ID da caixa desejada: ");
 
-            int idCaixa = tela.LerInt("\nDigite o ID da Revista desejada: ");
-
-            Console.Write($"\nCaixa | Cor {caixa[idCaixa].Cor} | Etiqueta {caixa[idCaixa].Etiqueta}|\n");
-            for (int i = 0; i < caixa.Length; i++)
+            if (idCaixa >= 0 && idCaixa < caixas.Count)
             {
-                Console.Write($"\nID {i} | Titulo {caixa[idCaixa].Revista[i]} |");
+                Caixa caixaEscolhida = caixas[idCaixa];
+                foreach (Revista revista in caixaEscolhida.Revistas)
+                {
+                    Console.WriteLine($"\tTítulo: {revista.Titulo}, Número da Edição: {revista.NumeroEdicao}");
+                }
             }
-
+            else
+            {
+                Console.WriteLine("ID inválido. Por favor, tente novamente.");
+            }
+            idCaixa = tela.LerInt("\nDigite o ID da revista desejada: ");
 
             Caixa caixa = new Caixa(etiqueta, cor, diasEmprestimo, revista[id]);
 
