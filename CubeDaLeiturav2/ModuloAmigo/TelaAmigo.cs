@@ -27,6 +27,7 @@ namespace CubeDaLeiturav2.ModuloAmigo
         }
         public void Editar()
         {
+            Checagem();
             Amigo[] amigo = RAmigo.Leitura();
             tela.Cabecalho();
             Console.Write("\n\tSelecionar amigo");
@@ -53,6 +54,27 @@ namespace CubeDaLeiturav2.ModuloAmigo
         public void Multa()
         {
 
+        }
+
+        public void Checagem()
+        {
+            Amigo[] amigo = RAmigo.Leitura();
+            tela.Cabecalho();
+            int cont = 0;
+            for (int i = 0; i < amigo.Length; i++)
+            {
+                if (amigo[i] == null)
+                {
+                    cont++;
+                }
+            }
+            if (amigo.Length == cont)
+            {
+                tela.ErroNaChecagem();
+                Console.Write("\nNenhum amigo cadastrado ainda, você será redirecionado ao cadastro de amigos e depois será retornado a esta pagina. Precione qualquer tecla para continuar.");
+                Console.ReadKey();
+                Cadastro();
+            }
         }
     }
 }

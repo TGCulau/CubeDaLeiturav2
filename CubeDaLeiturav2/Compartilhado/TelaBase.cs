@@ -99,12 +99,6 @@ namespace CubeDaLeiturav2.Compartilhado
                             break;
                         }
                 }
-
-                if (opmenu != 1 && opmenu != 2)
-                {
-                    Erro();
-                    continue;
-                }
             }
         }
 
@@ -167,6 +161,19 @@ namespace CubeDaLeiturav2.Compartilhado
             Console.WriteLine("########################################################################################################################");
             Console.ReadKey();
             Cabecalho();
+        }
+        public void ErroNaChecagem()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Clear();
+            Console.WriteLine("\n\n\n########################################################################################################################");
+            Console.WriteLine("###                                                                                                                  ###");
+            Console.WriteLine("###                                                      ATENÇÃO                                                     ###");
+            Console.WriteLine("###                                                                                                                  ###");
+            Console.WriteLine("###                                              Nenhum dado localizado!                                             ###");
+            Console.WriteLine("###                                                                                                                  ###");
+            Console.WriteLine("########################################################################################################################\n");
+            Console.ResetColor();
         }
         public void CadastroComSucesso()
         {

@@ -27,6 +27,7 @@ namespace CubeDaLeiturav2.ModuloRevista
         }
         public void Editar()
         {
+            Checagem();
             Revista[] revista = RRevista.Leitura();
             tela.Cabecalho();
             Console.Write("\n\tSelecionar Revista");
@@ -51,6 +52,7 @@ namespace CubeDaLeiturav2.ModuloRevista
         }
         public void Reservas()
         {
+            Checagem();
             Revista[] revista = RRevista.Leitura();
             tela.Cabecalho();
             Console.Write("\n\tSelecionar Revista");
@@ -75,6 +77,26 @@ namespace CubeDaLeiturav2.ModuloRevista
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("Reserva efetuada com sucesso!\n\nPrecione qualquer tecla para continuar.");
             Console.ResetColor();
+        }
+        public void Checagem()
+        {
+            Revista[] revista = RRevista.Leitura();
+            tela.Cabecalho();
+            int cont = 0;
+            for (int i = 0; i < revista.Length; i++)
+            {
+                if (revista[i] == null)
+                {
+                    cont++;
+                }
+            }
+            if (revista.Length == cont)
+            {
+                tela.ErroNaChecagem();
+                Console.Write("\nNenhuma revista cadastrada ainda, você será redirecionado ao cadastro de revistas e depois será retornado a esta pagina. Precione qualquer tecla para continuar.");
+                Console.ReadKey();
+                Cadastro();
+            }
         }
     }
 }

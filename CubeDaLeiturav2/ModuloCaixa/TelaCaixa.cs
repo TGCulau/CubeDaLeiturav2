@@ -35,7 +35,9 @@ namespace CubeDaLeiturav2.ModuloCaixa
         }
         public void Editar()
         {
+            Checagem();
             List<Caixa> caixas = RCaixa.Leitura();
+
             tela.Cabecalho();
             Console.Write("\n\tSelecionar caixa");
 
@@ -63,6 +65,7 @@ namespace CubeDaLeiturav2.ModuloCaixa
 
             Revista[] revista = RRevista.Leitura();
 
+            tela.Cabecalho();
             Console.Write("\n\tLista de revistas cadastradas");
 
             for (int i = 0; i < revista.Length; i++)
@@ -100,11 +103,24 @@ namespace CubeDaLeiturav2.ModuloCaixa
             }
             if (revista.Length == cont)
             {
+                tela.ErroNaChecagem();
                 Console.Write("\nNenhuma revista cadastrada ainda, você será redirecionado ao cadastro de revistas e depois será retornado a esta pagina. Precione qualquer tecla para continuar.");
                 Console.ReadKey();
                 telaRevista.Cadastro();
             }
         }
+        public void Checagem()
+        {
+            List<Caixa> caixas = RCaixa.Leitura();
+            tela.Cabecalho();
 
+            if (caixas.Count == 0)
+            {
+                tela.ErroNaChecagem();
+                Console.Write("\nNenhuma caixa cadastrada ainda, você será redirecionado ao cadastro de caixas e depois será retornado a esta pagina. Precione qualquer tecla para continuar.");
+                Console.ReadKey();
+                Cadastro();
+            }
+        }
     }
 }
