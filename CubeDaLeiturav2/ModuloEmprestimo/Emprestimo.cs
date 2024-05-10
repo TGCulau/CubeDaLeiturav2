@@ -7,18 +7,18 @@ namespace CubeDaLeiturav2.ModuloEmprestimo
     {
         Amigo Amigo { get; set; }
         Revista Revista { get; set; }
-        int DiaEmprestimo, MesEmprestimo, AnoEmprestimo, DiaDevolucao, MesDevolucao, AnoDevolucao;
+        string DataFormatada;
+        int Prazo;
+        DateTime DataEmprestimo, DataDevolucao;
         bool FoiEntregue;
-        public Emprestimo(Amigo amigo, Revista revista, int diaEmprestimo, int mesEmprestimo, int anoEmprestimo, int diaDevolucao, int mesDevolucao, int anoDevolucao, bool foiEntregue)
+        public Emprestimo(Amigo amigo, Revista revista, int prazo, string dataFormatada, DateTime dataEmprestimo, DateTime dataDevolucao, bool foiEntregue)
         {
             Amigo = amigo;
             Revista = revista;
-            DiaEmprestimo = diaEmprestimo;
-            MesEmprestimo = mesEmprestimo;
-            AnoEmprestimo = anoEmprestimo;
-            DiaDevolucao = diaDevolucao;
-            MesDevolucao = mesDevolucao;
-            AnoDevolucao = anoDevolucao;
+            Prazo = prazo;
+            DataFormatada = dataFormatada;
+            DataEmprestimo = dataEmprestimo;
+            DataDevolucao = dataDevolucao;
             FoiEntregue = foiEntregue;
         }
     }

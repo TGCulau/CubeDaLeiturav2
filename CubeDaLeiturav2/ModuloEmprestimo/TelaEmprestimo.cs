@@ -8,17 +8,25 @@ namespace CubeDaLeiturav2.ModuloEmprestimo
     public class TelaEmprestimo
     {
         #region Caixa de objetos
+
+        #region Telas
         TelaBase tela = new TelaBase();
         TelaCaixa telaCaixa = new TelaCaixa();
         TelaAmigo telaAmigo = new TelaAmigo();
+        TelaRevista telaRevista = new TelaRevista();
+        #endregion
+
+        #region Repositorios
         RepositorioCaixa RCaixa = new RepositorioCaixa();
         RepositorioRevista RRevista = new RepositorioRevista();
         RepositorioAmigo RAmigo = new RepositorioAmigo();
+        RepositorioEmprestimo REmprestimo = new RepositorioEmprestimo();
         #endregion
+        #endregion
+
         public void Cadastro()
         {
-
-
+            ChecagemDeDados();
 
             //carregando objetos
             List<Caixa> caixas = RCaixa.Leitura();
@@ -45,25 +53,67 @@ namespace CubeDaLeiturav2.ModuloEmprestimo
             }
             idCaixa = tela.LerInt("\nDigite o ID da caixa desejada: ");
 
+            int idRevista = -1;
             if (idCaixa >= 0 && idCaixa < caixas.Count)
             {
-                Caixa caixaEscolhida = caixas[idCaixa];
-                foreach (Revista revista in caixaEscolhida.Revistas)
+                foreach (Revista revista in caixas[idCaixa].Revistas)
                 {
-                    Console.WriteLine($"\tTítulo: {revista.Titulo}, Número da Edição: {revista.NumeroEdicao}");
+                    idCaixa++;
+                    if (revista.EstaReservada == true)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"\tID {idCaixa} | Título: {revista.Titulo} | Número da Edição: {revista.Numero} | Esta revista está reservada!");
+                        Console.ResetColor();
+                    }
+                    Console.WriteLine($"\tID {idCaixa} | Título: {revista.Titulo} | Número da Edição: {revista.Numero}");
                 }
             }
-            else
+            idRevista = tela.LerInt("\nDigite o ID da revista desejada: ");
+
+            if (caixas[idCaixa].Revistas[idRevista].EstaReservada == true)
             {
-                Console.WriteLine("ID inválido. Por favor, tente novamente.");
+                Console.ForegroundColor = ConsoleColor.Red;
+                while (true)
+                {
+                    int opReserva = tela.LerInt("\nEstá revista não pode ser emprestada, pois ela está reservada. Vá ao menu 'Reservas' para alterar o status dela\nGostaria de ir para o menu Reservas agora?\n1. Sim\n2. Não\nSua opção: ");
+                    if (opReserva != 1 && opReserva != 2)
+                    {
+                        continue;
+                    }
+                    switch (opReserva)
+                    {
+                        case 1:
+                            telaRevista.Reservas();
+                            break;
+                        case 2:
+                            break;
+                    }
+                }
             }
-            idCaixa = tela.LerInt("\nDigite o ID da revista desejada: ");
+            tela.Cabecalho();
+            Console.Write("\tCadastro de emprestimo");
+            int prazo = tela.LerInt("Digite quantos dias será emprestada essa revista: ");
 
-            Caixa caixa = new Caixa(etiqueta, cor, diasEmprestimo, revista[id]);
+            //salva a data formatada em string pra ficar bonito na impressão
+            string dataFormatada = DateTime.Now.ToShortDateString();
 
-            RCaixa.Salvar(caixa);
+            //Pega a data do sistema
+            DateTime dataEmprestimo = DateTime.Now;
 
+            //calcula o prazo
+            DateTime dataDevolucao = dataEmprestimo.AddDays(prazo);
+
+            bool foiEntregue = false;
+
+            Emprestimo emprestimo = new Emprestimo(amigo[idAmigo], caixas[idCaixa].Revistas[idRevista], prazo, dataFormatada, dataEmprestimo, dataDevolucao, foiEntregue);
+
+            REmprestimo.Salvar(emprestimo);
             tela.CadastroComSucesso();
+        }
+        public void ChecagemDeDados()
+        {
+            telaAmigo.Checagem();
+            telaCaixa.Checagem();
         }
     }
 }

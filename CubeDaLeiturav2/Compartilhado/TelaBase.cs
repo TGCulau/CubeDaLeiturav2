@@ -177,7 +177,6 @@ namespace CubeDaLeiturav2.Compartilhado
         }
         public void CadastroComSucesso()
         {
-            Cabecalho();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("Cadastro efetuado com sucesso!\n\nPrecione qualquer tecla para continuar.");
             Console.ResetColor();
