@@ -18,8 +18,9 @@ namespace CubeDaLeiturav2.ModuloAmigo
             long telefone = tela.LerLong("\nTelefone: ");
             Console.Write("\nDigite seu endereço: ");
             string endereco = Console.ReadLine();
+            bool estaMultado = false;
 
-            Amigo amigo = new Amigo(nome, nomeResponsavel, telefone, endereco);
+            Amigo amigo = new Amigo(nome, nomeResponsavel, telefone, endereco, estaMultado);
 
             RAmigo.Salvar(amigo);
 
@@ -50,12 +51,6 @@ namespace CubeDaLeiturav2.ModuloAmigo
 
             tela.CadastroComSucesso();
         }
-
-        public void Multa()
-        {
-
-        }
-
         public void Checagem()
         {
             Amigo[] amigo = RAmigo.Leitura();

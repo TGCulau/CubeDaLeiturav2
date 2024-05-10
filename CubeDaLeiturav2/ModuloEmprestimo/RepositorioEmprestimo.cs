@@ -2,21 +2,19 @@
 {
     public class RepositorioEmprestimo
     {
-        public Emprestimo[] emprestimos { get; set; } = new Emprestimo[56];
+        public List<Emprestimo> emprestimos { get; set; } = new List<Emprestimo>();
 
-        public Emprestimo[] Leitura()
+        public List<Emprestimo> Leitura()
         {
             return emprestimos;
         }
         public void Salvar(Emprestimo emprestimo)
         {
-            for (int i = 0; i < emprestimos.Length; i++)
-            {
-                if (emprestimos[i] == null)
-                {
-                    emprestimos[i] = emprestimo;
-                }
-            }
+            emprestimos.Add(emprestimo);
+        }
+        public void SalvarLista(List<Emprestimo> emprestimo)
+        {
+            this.emprestimos = emprestimos;
         }
     }
 }

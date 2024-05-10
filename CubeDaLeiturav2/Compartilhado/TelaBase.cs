@@ -175,6 +175,23 @@ namespace CubeDaLeiturav2.Compartilhado
             Console.WriteLine("########################################################################################################################\n");
             Console.ResetColor();
         }
+        public void UsuarioMultado()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Clear();
+            Console.WriteLine("\n\n\n########################################################################################################################");
+            Console.WriteLine("###                                                                                                                  ###");
+            Console.WriteLine("###                                                      ATENÇÃO                                                     ###");
+            Console.WriteLine("###                                                                                                                  ###");
+            Console.WriteLine("###                                              Usuario com multa ativa!                                            ###");
+            Console.WriteLine("###                                                                                                                  ###");
+            Console.WriteLine("###                                       Precione qualquer tecla para continuar.                                    ###");
+            Console.WriteLine("###                                                                                                                  ###");
+            Console.WriteLine("########################################################################################################################");
+            Console.ResetColor();
+            Console.ReadKey();
+
+        }
         public void CadastroComSucesso()
         {
             Console.ForegroundColor = ConsoleColor.Green;

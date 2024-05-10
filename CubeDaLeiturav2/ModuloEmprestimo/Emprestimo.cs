@@ -5,12 +5,12 @@ namespace CubeDaLeiturav2.ModuloEmprestimo
 {
     public class Emprestimo
     {
-        Amigo Amigo { get; set; }
-        Revista Revista { get; set; }
-        string DataFormatada;
-        int Prazo;
-        DateTime DataEmprestimo, DataDevolucao;
-        bool FoiEntregue;
+        public Amigo Amigo { get; set; }
+        public Revista Revista { get; set; }
+        public string DataFormatada;
+        public int Prazo;
+        public DateTime DataEmprestimo, DataDevolucao;
+        public bool FoiEntregue;
         public Emprestimo(Amigo amigo, Revista revista, int prazo, string dataFormatada, DateTime dataEmprestimo, DateTime dataDevolucao, bool foiEntregue)
         {
             Amigo = amigo;
