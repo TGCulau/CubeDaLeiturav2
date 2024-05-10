@@ -17,11 +17,11 @@ namespace CubeDaLeiturav2.ModuloEmprestimo
         #endregion
         public void Cadastro()
         {
-            telaCaixa.ChecagemRevista();
-            ChecagemAmigo();
 
-            Caixa[] caixa = RCaixa.Leitura();
 
+
+            //carregando objetos
+            List<Caixa> caixas = RCaixa.Leitura();
             Amigo[] amigo = RAmigo.Leitura();
 
             tela.Cabecalho();
@@ -64,25 +64,6 @@ namespace CubeDaLeiturav2.ModuloEmprestimo
             RCaixa.Salvar(caixa);
 
             tela.CadastroComSucesso();
-        }
-
-        public void ChecagemAmigo()
-        {
-            Amigo[] amigo = RAmigo.Leitura();
-            int cont = 0;
-            for (int i = 0; i < amigo.Length; i++)
-            {
-                if (amigo[i] == null)
-                {
-                    cont++;
-                }
-            }
-            if (amigo.Length == cont)
-            {
-                Console.Write("\nNenhuma revista cadastrada ainda, você será redirecionado ao cadastro de revistas e depois será retornado a esta pagina. Precione qualquer tecla para continuar.");
-                Console.ReadKey();
-                telaAmigo.Cadastro();
-            }
         }
     }
 }

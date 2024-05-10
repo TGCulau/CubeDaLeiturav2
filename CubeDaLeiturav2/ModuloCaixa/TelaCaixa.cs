@@ -13,7 +13,7 @@ namespace CubeDaLeiturav2.ModuloCaixa
         #endregion
         public void Cadastro()
         {
-            ChecagemRevista();
+            telaRevista.Checagem();
 
             tela.Cabecalho();
 
@@ -61,7 +61,7 @@ namespace CubeDaLeiturav2.ModuloCaixa
         }
         public void CadastroDeRevista()
         {
-            ChecagemRevista();
+            telaRevista.Checagem();
 
             Revista[] revista = RRevista.Leitura();
 
@@ -89,25 +89,6 @@ namespace CubeDaLeiturav2.ModuloCaixa
             tela.CadastroComSucesso();
 
             RCaixa.SalvarLista(caixas);
-        }
-        public void ChecagemRevista()
-        {
-            Revista[] revista = RRevista.Leitura();
-            int cont = 0;
-            for (int i = 0; i < revista.Length; i++)
-            {
-                if (revista[i] == null)
-                {
-                    cont++;
-                }
-            }
-            if (revista.Length == cont)
-            {
-                tela.ErroNaChecagem();
-                Console.Write("\nNenhuma revista cadastrada ainda, você será redirecionado ao cadastro de revistas e depois será retornado a esta pagina. Precione qualquer tecla para continuar.");
-                Console.ReadKey();
-                telaRevista.Cadastro();
-            }
         }
         public void Checagem()
         {
